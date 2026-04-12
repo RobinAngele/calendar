@@ -1416,6 +1416,9 @@ export default defineStore('calendarObjectInstance', {
 			const calendar = calendarsStore.getCalendarById(calendarObject.calendarId)
 
 			// Inherit calendar transparency to new events (fix for "Never show me as busy")
+			// Both must be set as they represent different layers:
+			// - calendarObjectInstance.timeTransparency: Store/state layer
+			// - calendarObjectInstance.eventComponent.timeTransparency: iCal data layer
 			if (calendar?.transparency === 'transparent') {
 				calendarObjectInstance.timeTransparency = 'transparent'
 				calendarObjectInstance.eventComponent.timeTransparency = 'transparent'
